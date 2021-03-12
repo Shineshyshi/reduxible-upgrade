@@ -1,11 +1,9 @@
 import ReduxibleConfig from "./ReduxibleConfig";
 import StoreFactory from "./StoreFactory";
 import RouterFactory from "./RouterFactory";
-import {
-  createBrowserHistory,
-  createHashHistory,
-  createMemoryHistory,
-} from "history";
+import createBrowserHistory from "history/lib/createBrowserHistory";
+import createHashHistory from "history/lib/createHashHistory";
+import createMemoryHistory from "history/lib/createMemoryHistory";
 import contextMiddleware from "./contextMiddlerware";
 import warning from "./warning";
 

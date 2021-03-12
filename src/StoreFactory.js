@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, compose, createStore } from "redux";
 
 export default class StoreFactory {
   constructor(options) {
@@ -12,19 +12,21 @@ export default class StoreFactory {
 
   validate() {
     if (!this.reducers) {
-      throw new Error('A reducers is empty. Please check your config arguments.');
+      throw new Error(
+        "A reducers is empty. Please check your config arguments."
+      );
     }
   }
 
   createStore(initialState = {}, middlewares = []) {
     let finalCreateStore;
-    let appliedMiddleware = applyMiddleware(...middlewares, ...this.middlewares);
+    let appliedMiddleware = applyMiddleware(
+      ...middlewares,
+      ...this.middlewares
+    );
 
     if (this.useDevTools && this.devTools) {
-      finalCreateStore = compose(
-        appliedMiddleware,
-        ...this.devTools.composers()
-      )(createStore);
+      finalCreateStore = compose(appliedMiddleware, this.devTools)(createStore);
     } else {
       finalCreateStore = appliedMiddleware(createStore);
     }
